@@ -1,0 +1,128 @@
+{
+  "navigation": {
+    "search": "بحث",
+    "buy": "شراء",
+    "rent": "إيجار",
+    "findAgent": "العثور على وكيل",
+    "listProperty": "إدراج العقار",
+    "developers": "المطورين",
+    "blog": "المدونة",
+    "explore": "استكشاف",
+    "login": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "countries": {
+    "selectCountry": "اختر الدولة",
+    "unitedArabEmirates": "الإمارات العربية المتحدة",
+    "saudiArabia": "المملكة العربية السعودية",
+    "qatar": "قطر",
+    "kuwait": "الكويت",
+    "bahrain": "البحرين",
+    "oman": "عُمان"
+  },
+  "homepage": {
+    "heroTitle": "ابحث عن خطوتك التالية",
+    "heroSubtitle": "اكتشف المنازل والشقق والعقارات الاستثمارية عبر الخليج",
+    "searchPlaceholder": "أدخل موقع (مثال: مرسى دبي، خليج الأعمال)",
+    "searchProperties": "ابحث عن العقارات للبيع والإيجار",
+    "forSale": "للبيع",
+    "toRent": "للإيجار",
+    "search": "بحث"
+  },
+  "featuredListings": {
+    "title": "القوائم المميزة",
+    "subtitle": "اكتشف مجموعتنا المختارة بعناية من العقارات المميزة"
+  },
+  "propertyTypes": {
+    "apartment": "شقة",
+    "villa": "فيلا",
+    "townhouse": "تاون هاوس",
+    "penthouse": "بنتهاوس",
+    "studio": "استوديو"
+  },
+  "common": {
+    "forSale": "للبيع",
+    "forRent": "للإيجار",
+    "bedrooms": "غرف النوم",
+    "bathrooms": "الحمامات",
+    "sqft": "قدم مربع",
+    "aed": "درهم",
+    "monthly": "شهرياً",
+    "yearly": "سنوياً",
+    "viewDetails": "عرض التفاصيل",
+    "contactAgent": "اتصل بالوكيل",
+    "whatsapp": "واتساب",
+    "call": "اتصال"
+  },
+  "findAgent": {
+    "title": "اعثر على وكيلك للعثور على منزل",
+    "subtitle": "تواصل مع أفضل المتخصصين في العقارات في دبي",
+    "agents": "الوكلاء",
+    "companies": "الشركات",
+    "serviceNeeded": "الخدمة المطلوبة",
+    "language": "اللغة",
+    "searchButton": "بحث"
+  },
+  "listProperty": {
+    "title": "أدرج عقارك",
+    "subtitle": "اختر كيف تريد إدراج عقارك",
+    "iAmAgent": "أنا وكيل",
+    "iAmOwner": "أنا مالك",
+    "agentDescription": "وكيل عقارات محترف مع ترخيص مناسب",
+    "ownerDescription": "مالك عقار يتطلع للبيع أو الإيجار مباشرة",
+    "continueAsAgent": "متابعة كوكيل",
+    "continueAsOwner": "متابعة كمالك"
+  },
+  "footer": {
+    "sections": {
+      "sell": "بيع",
+      "resources": "الموارد",
+      "locations": "المواقع",
+      "company": "الشركة"
+    },
+    "buy": {
+      "newProperties": "عقارات جديدة",
+      "commercialProperties": "عقارات تجارية",
+      "luxuryProperties": "عقارات فاخرة",
+      "investmentProperties": "عقارات استثمارية"
+    },
+    "rent": {
+      "searchRentals": "البحث عن إيجارات",
+      "commercialRentals": "إيجارات تجارية",
+      "shortTermRentals": "إيجارات قصيرة المدى",
+      "studentAccommodation": "سكن طلابي"
+    },
+    "sell": {
+      "propertyValuation": "تقييم العقار",
+      "sellingGuide": "دليل البيع",
+      "marketTrends": "اتجاهات السوق"
+    },
+    "resources": {
+      "mortgageCalculator": "حاسبة الرهن العقاري",
+      "buyingGuide": "دليل الشراء",
+      "rentingGuide": "دليل الإيجار"
+    },
+    "company": {
+      "aboutUs": "من نحن",
+      "careers": "الوظائف",
+      "contactUs": "اتصل بنا",
+      "pressCenter": "المركز الإعلامي",
+      "investorRelations": "علاقات المستثمرين"
+    },
+    "app": {
+      "downloadApp": "تحميل تطبيق عقاريو",
+      "downloadOn": "تحميل على",
+      "getItOn": "احصل عليه من",
+      "followUs": "تابعنا"
+    },
+    "legal": {
+      "termsConditions": "الشروط والأحكام",
+      "privacyPolicy": "سياسة الخصوصية",
+      "cookiePolicy": "سياسة ملفات تعريف الارتباط",
+      "sitemap": "خريطة الموقع",
+      "allRightsReserved": "جميع الحقوق محفوظة."
+    }
+  }
+}

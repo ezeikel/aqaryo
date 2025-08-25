@@ -1,135 +1,228 @@
-# Turborepo starter
+# 🏠 Aqaryo
 
-This Turborepo starter is maintained by the Turborepo core team.
+> Modern real estate platform for discovering and listing properties across the Gulf region
 
-## Using this example
+[![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js%2015-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.x-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+[![Turbo](https://img.shields.io/badge/Turbo-Monorepo-EF4444?style=flat-square&logo=turborepo)](https://turbo.build/)
 
-Run the following command:
+## ✨ Features
 
-```sh
-npx create-turbo@latest
-```
+- 🌍 **Internationalization** - Full Arabic/English support with RTL layout
+- 📱 **Cross-platform** - Next.js web app + Expo React Native mobile app
+- 🎨 **Modern UI** - Beautiful interface with shadcn/ui components
+- 🔍 **Property Search** - Advanced filtering and location-based search
+- 👥 **Agent Directory** - Find and connect with real estate professionals
+- 📊 **Analytics** - Vercel Analytics integration for insights
+- 🏗️ **Monorepo** - Turborepo for efficient development workflow
+- 📍 **Multi-country** - Support for UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman
 
-## What's inside?
+## 🛠️ Tech Stack
 
-This Turborepo includes the following packages/apps:
+### Frontend
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4.x
+- **UI Components**: shadcn/ui + Radix UI
+- **Icons**: Lucide React
 
-### Apps and Packages
+### Mobile
+- **Framework**: Expo React Native
+- **Navigation**: Expo Router
+- **Platform**: iOS & Android
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Internationalization
+- **i18n**: next-intl
+- **Languages**: English, Arabic
+- **RTL Support**: Full right-to-left layout
+- **Fonts**: Poppins, Outfit (Latin), Cairo, Noto Sans Arabic (Arabic)
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### Development
+- **Monorepo**: Turborepo
+- **Package Manager**: pnpm
+- **Linting**: ESLint
+- **Formatting**: Prettier
+- **Analytics**: Vercel Analytics
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## 📁 Project Structure
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+aqaryo/
+├── apps/
+│   ├── web/           # Next.js web application
+│   ├── mobile/        # Expo React Native app
+│   └── docs/          # Documentation site
+├── packages/
+│   ├── ui/            # Shared UI components
+│   ├── eslint-config/ # Shared ESLint configuration
+│   └── typescript-config/ # Shared TypeScript config
+└── turbo.json         # Turborepo configuration
 ```
 
-### Develop
+## 🚀 Quick Start
 
-To develop all apps and packages, run the following command:
+### Prerequisites
+- Node.js 18+ 
+- pnpm 9.0+
+- iOS Simulator (for iOS development)
+- Android Studio (for Android development)
 
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/aqaryo.git
+   cd aqaryo
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
+
+3. **Start development servers**
+   ```bash
+   # Start all apps (web + mobile + docs)
+   pnpm dev
+   
+   # Or start individual apps
+   pnpm dev --filter=web        # Web app only
+   pnpm dev --filter=mobile     # Mobile app only
+   ```
+
+4. **Open in browser**
+   - Web app: http://localhost:3000
+   - Documentation: http://localhost:3001
+
+### Mobile Development
+
+1. **iOS Simulator**
+   ```bash
+   cd apps/mobile
+   pnpm run ios
+   ```
+
+2. **Android Emulator**
+   ```bash
+   cd apps/mobile
+   pnpm run android
+   ```
+
+3. **Physical Device**
+   ```bash
+   cd apps/mobile
+   pnpm start
+   # Scan QR code with Expo Go app
+   ```
+
+## 🌍 Internationalization
+
+The app supports English and Arabic with full RTL (right-to-left) layout:
+
+- **English**: `/en/*` routes
+- **Arabic**: `/ar/*` routes  
+- **Auto-detection**: Redirects `/` to default locale
+- **Language switcher**: Available in header
+- **RTL Support**: Automatic layout flipping for Arabic
+
+### Adding Translations
+
+1. **Add keys to message files**:
+   - `apps/web/messages/en.json`
+   - `apps/web/messages/ar.json`
+
+2. **Use in components**:
+   ```tsx
+   import { TranslatedText } from "@/components/ui/TranslatedText"
+   
+   <TranslatedText 
+     t="homepage.heroTitle" 
+     as="h1"
+     className="text-4xl font-bold"
+     fallback="Default text"
+   />
+   ```
+
+## 🏗️ Available Scripts
+
+### Root Level
+- `pnpm dev` - Start all development servers
+- `pnpm build` - Build all applications
+- `pnpm lint` - Lint all packages
+- `pnpm check-types` - Type check all packages
+
+### Web App (`apps/web`)
+- `pnpm dev` - Start Next.js development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm check-types` - TypeScript type checking
+
+### Mobile App (`apps/mobile`)
+- `pnpm dev` - Start iOS development build
+- `pnpm dev:android` - Start Android development build
+- `pnpm ios` - Run on iOS simulator
+- `pnpm android` - Run on Android emulator
+- `pnpm prebuild` - Generate native code
+- `pnpm build` - Export app bundle
+
+## 🚀 Deployment
+
+### Web App (Vercel)
+1. Connect repository to Vercel
+2. Set build command: `cd apps/web && pnpm build`
+3. Set output directory: `apps/web/.next`
+4. Deploy automatically on push to main
+
+### Mobile App (EAS Build)
+```bash
+cd apps/mobile
+
+# Install EAS CLI
+npm install -g @expo/eas-cli
+
+# Configure build
+eas build:configure
+
+# Build for production
+eas build --platform all
 ```
-cd my-turborepo
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+## 📱 Platform Support
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+### Web
+- ✅ Chrome, Firefox, Safari, Edge (modern versions)
+- ✅ Mobile browsers
+- ✅ Progressive Web App features
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### Mobile
+- ✅ iOS 13+
+- ✅ Android API 21+ (Android 5.0+)
+- ✅ Expo managed workflow
+- ✅ Custom development builds
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+## 🤝 Contributing
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a pull request
 
-### Remote Caching
+## 📄 License
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## 🙏 Acknowledgments
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+- [Next.js](https://nextjs.org/) - React framework
+- [Expo](https://expo.dev/) - React Native platform
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [shadcn/ui](https://ui.shadcn.com/) - Beautiful UI components
+- [Turborepo](https://turbo.build/) - Monorepo tooling
+- [Vercel](https://vercel.com/) - Deployment platform
 
-```
-cd my-turborepo
+---
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+Built with ❤️ for the Gulf region's real estate market

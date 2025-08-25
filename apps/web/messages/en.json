@@ -1,0 +1,128 @@
+{
+  "navigation": {
+    "search": "Search",
+    "buy": "Buy",
+    "rent": "Rent",
+    "findAgent": "Find Agent",
+    "listProperty": "List Property",
+    "developers": "Developers",
+    "blog": "Blog",
+    "explore": "Explore",
+    "login": "Login",
+    "signUp": "Sign Up",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "countries": {
+    "selectCountry": "Select Country",
+    "unitedArabEmirates": "United Arab Emirates",
+    "saudiArabia": "Saudi Arabia",
+    "qatar": "Qatar",
+    "kuwait": "Kuwait",
+    "bahrain": "Bahrain",
+    "oman": "Oman"
+  },
+  "homepage": {
+    "heroTitle": "Find your next move",
+    "heroSubtitle": "Discover homes, apartments, and investment properties across the Gulf",
+    "searchPlaceholder": "Enter a location (e.g., Dubai Marina, Business Bay)",
+    "searchProperties": "Search properties for sale and to rent",
+    "forSale": "For sale",
+    "toRent": "To rent",
+    "search": "Search"
+  },
+  "featuredListings": {
+    "title": "Featured Listings",
+    "subtitle": "Discover our handpicked selection of premium properties"
+  },
+  "propertyTypes": {
+    "apartment": "Apartment",
+    "villa": "Villa",
+    "townhouse": "Townhouse",
+    "penthouse": "Penthouse",
+    "studio": "Studio"
+  },
+  "common": {
+    "forSale": "For Sale",
+    "forRent": "For Rent",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "sqft": "sq ft",
+    "aed": "AED",
+    "monthly": "monthly",
+    "yearly": "yearly",
+    "viewDetails": "View Details",
+    "contactAgent": "Contact Agent",
+    "whatsapp": "WhatsApp",
+    "call": "Call"
+  },
+  "findAgent": {
+    "title": "Find your agent to find a home",
+    "subtitle": "Connect with Dubai's top real estate professionals",
+    "agents": "Agents",
+    "companies": "Companies",
+    "serviceNeeded": "Service needed",
+    "language": "Language",
+    "searchButton": "Search"
+  },
+  "listProperty": {
+    "title": "List Your Property",
+    "subtitle": "Choose how you'd like to list your property",
+    "iAmAgent": "I am an Agent",
+    "iAmOwner": "I am an Owner",
+    "agentDescription": "Professional real estate agent with proper licensing",
+    "ownerDescription": "Property owner looking to sell or rent directly",
+    "continueAsAgent": "Continue as Agent",
+    "continueAsOwner": "Continue as Owner"
+  },
+  "footer": {
+    "sections": {
+      "sell": "Sell",
+      "resources": "Resources",
+      "locations": "Locations",
+      "company": "Company"
+    },
+    "buy": {
+      "newProperties": "New Properties",
+      "commercialProperties": "Commercial Properties",
+      "luxuryProperties": "Luxury Properties",
+      "investmentProperties": "Investment Properties"
+    },
+    "rent": {
+      "searchRentals": "Search Rentals",
+      "commercialRentals": "Commercial Rentals",
+      "shortTermRentals": "Short-term Rentals",
+      "studentAccommodation": "Student Accommodation"
+    },
+    "sell": {
+      "propertyValuation": "Property Valuation",
+      "sellingGuide": "Selling Guide",
+      "marketTrends": "Market Trends"
+    },
+    "resources": {
+      "mortgageCalculator": "Mortgage Calculator",
+      "buyingGuide": "Buying Guide",
+      "rentingGuide": "Renting Guide"
+    },
+    "company": {
+      "aboutUs": "About Us",
+      "careers": "Careers",
+      "contactUs": "Contact Us",
+      "pressCenter": "Press Center",
+      "investorRelations": "Investor Relations"
+    },
+    "app": {
+      "downloadApp": "Download the Aqaryo App",
+      "downloadOn": "Download on the",
+      "getItOn": "Get it on",
+      "followUs": "Follow Us"
+    },
+    "legal": {
+      "termsConditions": "Terms & Conditions",
+      "privacyPolicy": "Privacy Policy",
+      "cookiePolicy": "Cookie Policy",
+      "sitemap": "Sitemap",
+      "allRightsReserved": "All rights reserved."
+    }
+  }
+}
