@@ -51,8 +51,7 @@
 aqaryo/
 ├── apps/
 │   ├── web/           # Next.js web application
-│   ├── mobile/        # Expo React Native app
-│   └── docs/          # Documentation site
+│   └── mobile/        # Expo React Native app
 ├── packages/
 │   ├── ui/            # Shared UI components
 │   ├── eslint-config/ # Shared ESLint configuration
