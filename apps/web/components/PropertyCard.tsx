@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Heart, Bed, Bath, Square, Phone, Mail, MessageCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useCurrency } from "@/contexts/CurrencyContext"
 
 type PropertyCardProps = {
   title: string
@@ -18,7 +19,7 @@ type PropertyCardProps = {
   image: string
   listedAt: string
   onViewDetails?: () => void
-  compact?: boolean // Added compact prop for map view layout
+  compact?: boolean
   agent?: {
     name: string
     phone: string
@@ -38,7 +39,7 @@ const PropertyCard = ({
   image,
   listedAt,
   onViewDetails,
-  compact = false, // Default compact to false
+  compact = false,
   agent = {
     name: "Sarah Ahmed",
     phone: "+971501234567",
@@ -48,6 +49,24 @@ const PropertyCard = ({
 }: PropertyCardProps) => {
   const [isSaved, setIsSaved] = useState(false)
   const { toast } = useToast()
+  const { convertPrice, displayCurrency } = useCurrency()
+
+  const getPriceDisplay = () => {
+    const priceMatch = price.match(/([A-Z]{3})\s*([\d,]+)(.*)/)
+    if (!priceMatch) return { original: price, converted: null }
+
+    const [, currency, amount, period] = priceMatch
+    const numericAmount = Number.parseInt(amount.replace(/,/g, ""))
+
+    const conversion = convertPrice(numericAmount, currency)
+
+    return {
+      original: `${currency} ${amount}${period}`,
+      converted: conversion.amount !== numericAmount ? `≈ ${conversion.formatted}${period}` : null,
+    }
+  }
+
+  const priceDisplay = getPriceDisplay()
 
   const handleSave = () => {
     setIsSaved(!isSaved)
@@ -59,7 +78,7 @@ const PropertyCard = ({
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
-      `Hi ${agent.name}, I'm interested in the property: ${title} (${price}) located in ${location}. Can you provide more details?`,
+      `Hi ${agent.name}, I'm interested in the property: ${title} (${priceDisplay.original}) located in ${location}. Can you provide more details?`,
     )
     const whatsappUrl = `https://wa.me/${agent.phone.replace(/[^0-9]/g, "")}?text=${message}`
     window.open(whatsappUrl, "_blank")
@@ -68,7 +87,7 @@ const PropertyCard = ({
   const handleEmail = () => {
     const subject = encodeURIComponent(`Inquiry about ${title}`)
     const body = encodeURIComponent(
-      `Hi ${agent.name},\n\nI'm interested in the property: ${title} (${price}) located in ${location}.\n\nCould you please provide more details?\n\nThank you.`,
+      `Hi ${agent.name},\n\nI'm interested in the property: ${title} (${priceDisplay.original}) located in ${location}.\n\nCould you please provide more details?\n\nThank you.`,
     )
     window.location.href = `mailto:${agent.email}?subject=${subject}&body=${body}`
   }
@@ -90,9 +109,8 @@ const PropertyCard = ({
             <Button
               variant="ghost"
               size="sm"
-              className={`absolute top-2 right-2 p-1 rounded-full bg-white/90 hover:bg-white ${
-                isSaved ? "text-red-500" : "text-muted-foreground"
-              }`}
+              className={`absolute top-2 right-2 p-1 rounded-full bg-white/90 hover:bg-white ${isSaved ? "text-red-500" : "text-muted-foreground"
+                }`}
               onClick={handleSave}
             >
               <Heart className={`w-3 h-3 ${isSaved ? "fill-current" : ""}`} />
@@ -102,32 +120,39 @@ const PropertyCard = ({
           <CardContent className="flex-1 p-3 space-y-2">
             <div className="space-y-1">
               <h3 className="font-semibold text-sm line-clamp-1">{title}</h3>
-              <div className="flex items-baseline gap-1">
-                <span className="text-xs text-muted-foreground font-medium">{price.split(" ")[0]}</span>
-                {(() => {
-                  const parts = price.split(" ")
-                  const currency = parts[0]
-                  const restParts = parts.slice(1)
-                  const lastPart = restParts[restParts.length - 1]
-                  const isLastPartPeriod =
-                    lastPart &&
-                    (lastPart.toLowerCase().includes("yearly") ||
-                      lastPart.toLowerCase().includes("monthly") ||
-                      lastPart.toLowerCase().includes("week"))
+              <div className="space-y-1">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-xs text-muted-foreground font-medium">
+                    {priceDisplay.original.split(" ")[0]}
+                  </span>
+                  {(() => {
+                    const parts = priceDisplay.original.split(" ")
+                    const currency = parts[0]
+                    const restParts = parts.slice(1)
+                    const lastPart = restParts[restParts.length - 1]
+                    const isLastPartPeriod =
+                      lastPart &&
+                      (lastPart.toLowerCase().includes("yearly") ||
+                        lastPart.toLowerCase().includes("monthly") ||
+                        lastPart.toLowerCase().includes("week"))
 
-                  if (isLastPartPeriod && restParts.length > 1) {
-                    const amount = restParts.slice(0, -1).join(" ")
-                    const period = lastPart
-                    return (
-                      <>
-                        <span className="text-lg font-bold text-primary">{amount}</span>
-                        <span className="text-xs text-muted-foreground font-medium">{period}</span>
-                      </>
-                    )
-                  } else {
-                    return <span className="text-lg font-bold text-primary">{restParts.join(" ")}</span>
-                  }
-                })()}
+                    if (isLastPartPeriod && restParts.length > 1) {
+                      const amount = restParts.slice(0, -1).join(" ")
+                      const period = lastPart
+                      return (
+                        <>
+                          <span className="text-lg font-bold text-primary">{amount}</span>
+                          <span className="text-xs text-muted-foreground font-medium">{period}</span>
+                        </>
+                      )
+                    } else {
+                      return <span className="text-lg font-bold text-primary">{restParts.join(" ")}</span>
+                    }
+                  })()}
+                </div>
+                {priceDisplay.converted && (
+                  <div className="text-xs text-muted-foreground">≈ {priceDisplay.converted}</div>
+                )}
               </div>
               <p className="text-muted-foreground text-xs">{location}</p>
             </div>
@@ -192,9 +217,8 @@ const PropertyCard = ({
         <Button
           variant="ghost"
           size="sm"
-          className={`absolute top-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white ${
-            isSaved ? "text-red-500" : "text-muted-foreground"
-          }`}
+          className={`absolute top-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white ${isSaved ? "text-red-500" : "text-muted-foreground"
+            }`}
           onClick={handleSave}
         >
           <Heart className={`w-4 h-4 ${isSaved ? "fill-current" : ""}`} />
@@ -209,36 +233,43 @@ const PropertyCard = ({
       <CardContent className="p-3 md:p-4 space-y-2 md:space-y-3">
         <div className="space-y-1 md:space-y-2">
           <h3 className="font-semibold text-base md:text-lg line-clamp-1">{title}</h3>
-          <div className="flex items-baseline gap-1 md:gap-2">
-            <span className="text-xs md:text-sm text-muted-foreground font-medium">{price.split(" ")[0]}</span>
-            {(() => {
-              const parts = price.split(" ")
-              const currency = parts[0]
-              const restParts = parts.slice(1)
-              const lastPart = restParts[restParts.length - 1]
-              const isLastPartPeriod =
-                lastPart &&
-                (lastPart.toLowerCase().includes("yearly") ||
-                  lastPart.toLowerCase().includes("monthly") ||
-                  lastPart.toLowerCase().includes("week"))
+          <div className="space-y-1">
+            <div className="flex items-baseline gap-1 md:gap-2">
+              <span className="text-xs md:text-sm text-muted-foreground font-medium">
+                {priceDisplay.original.split(" ")[0]}
+              </span>
+              {(() => {
+                const parts = priceDisplay.original.split(" ")
+                const currency = parts[0]
+                const restParts = parts.slice(1)
+                const lastPart = restParts[restParts.length - 1]
+                const isLastPartPeriod =
+                  lastPart &&
+                  (lastPart.toLowerCase().includes("yearly") ||
+                    lastPart.toLowerCase().includes("monthly") ||
+                    lastPart.toLowerCase().includes("week"))
 
-              if (isLastPartPeriod && restParts.length > 1) {
-                const amount = restParts.slice(0, -1).join(" ")
-                const period = lastPart
-                return (
-                  <>
-                    <span className="text-xl md:text-2xl font-bold text-primary">{amount}</span>
-                    <span className="text-sm md:text-base text-muted-foreground font-medium">{period}</span>
-                  </>
-                )
-              } else {
-                return <span className="text-xl md:text-2xl font-bold text-primary">{restParts.join(" ")}</span>
-              }
-            })()}
+                if (isLastPartPeriod && restParts.length > 1) {
+                  const amount = restParts.slice(0, -1).join(" ")
+                  const period = lastPart
+                  return (
+                    <>
+                      <span className="text-xl md:text-2xl font-bold text-primary">{amount}</span>
+                      <span className="text-sm md:text-base text-muted-foreground font-medium">{period}</span>
+                    </>
+                  )
+                } else {
+                  return <span className="text-xl md:text-2xl font-bold text-primary">{restParts.join(" ")}</span>
+                }
+              })()}
+            </div>
+            {priceDisplay.converted && <div className="text-sm text-muted-foreground">≈ {priceDisplay.converted}</div>}
           </div>
-          {price.toLowerCase().includes("yearly") && (
+          {priceDisplay.original.toLowerCase().includes("yearly") && (
             <p className="text-xs text-muted-foreground">
-              (AED {Math.round(Number.parseInt(price.replace(/[^0-9]/g, "")) / 12).toLocaleString()}/month)
+              {priceDisplay.converted
+                ? `(≈ ${displayCurrency.symbol} ${Math.round(convertPrice(Number.parseInt(priceDisplay.original.replace(/[^0-9]/g, "")) / 12, priceDisplay.original.split(" ")[0]).amount).toLocaleString()}/month)`
+                : `(AED ${Math.round(Number.parseInt(priceDisplay.original.replace(/[^0-9]/g, "")) / 12).toLocaleString()}/month)`}
             </p>
           )}
           <p className="text-muted-foreground text-xs md:text-sm">{location}</p>

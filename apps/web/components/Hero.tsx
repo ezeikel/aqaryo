@@ -72,22 +72,25 @@ const Hero = () => {
               <TranslatedText 
                 t="homepage.heroTitle" 
                 as="h1" 
-                className="text-4xl md:text-6xl font-serif font-bold text-white"
+                className="text-4xl md:text-6xl font-bold text-white"
                 fallback="Find your next move"
               />
               <TranslatedText 
                 t="homepage.heroSubtitle"
                 as="p" 
-                className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-sans"
+                className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto"
                 fallback="Discover homes, apartments, and investment properties across the Gulf"
               />
             </div>
 
             <div className="bg-card rounded-xl p-6 shadow-lg max-w-2xl mx-auto">
               <div className="space-y-4">
-                <h2 className="text-lg font-serif font-semibold text-foreground">
-                  Search properties for sale and to rent
-                </h2>
+                <TranslatedText 
+                  t="homepage.searchTitle"
+                  as="h2" 
+                  className="text-lg font-semibold text-foreground"
+                  fallback="Search properties for sale and to rent"
+                />
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   <div className="flex-1">

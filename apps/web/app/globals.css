@@ -41,8 +41,8 @@
   /* Updated font variables to use Outfit for headings and Poppins for body */
   --font-poppins: "Poppins", sans-serif;
   --font-outfit: "Outfit", sans-serif;
+  --font-noto-kufi-arabic: "Noto Kufi Arabic", sans-serif;
   --font-cairo: "Cairo", sans-serif;
-  --font-noto-arabic: "Noto Arabic", sans-serif;
 }
 
 .dark {
@@ -86,8 +86,8 @@
   --font-serif: var(--font-outfit);
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   /* Adding Arabic font variables */
-  --font-arabic: var(--font-cairo);
-  --font-arabic-alt: var(--font-noto-arabic);
+  --font-arabic-heading: var(--font-noto-kufi-arabic);
+  --font-arabic-body: var(--font-cairo);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -134,8 +134,31 @@
   body {
     @apply bg-background text-foreground;
   }
-  /* Adding Arabic font utility class */
+  /* Arabic font class that works with Tailwind */
   .font-arabic {
-    font-family: var(--font-cairo), var(--font-noto-arabic), sans-serif;
+    font-family: var(--font-cairo), system-ui, sans-serif;
+  }
+  
+  /* Arabic headings use Noto Kufi Arabic */
+  .font-arabic h1,
+  .font-arabic h2,
+  .font-arabic h3,
+  .font-arabic h4,
+  .font-arabic h5,
+  .font-arabic h6 {
+    font-family: var(--font-noto-kufi-arabic), system-ui, sans-serif;
+  }
+  
+  /* Utility classes */
+  .font-arabic-heading {
+    font-family: var(--font-noto-kufi-arabic), system-ui, sans-serif;
+  }
+  
+  .font-arabic-body {
+    font-family: var(--font-cairo), system-ui, sans-serif;
+  }
+  
+  .font-english-heading {
+    font-family: var(--font-poppins), system-ui, sans-serif;
   }
 }

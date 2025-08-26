@@ -25,6 +25,7 @@
   "homepage": {
     "heroTitle": "Find your next move",
     "heroSubtitle": "Discover homes, apartments, and investment properties across the Gulf",
+    "searchTitle": "Search properties for sale and to rent",
     "searchPlaceholder": "Enter a location (e.g., Dubai Marina, Business Bay)",
     "searchProperties": "Search properties for sale and to rent",
     "forSale": "For sale",

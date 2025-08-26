@@ -7,9 +7,10 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Menu, Globe, ChevronDown, MapPin } from "lucide-react"
+import { Menu, Globe, ChevronDown, MapPin, DollarSign } from "lucide-react"
 import { AuthModal } from "@/components/AuthModals"
 import { useCountry } from "@/contexts/CountryContext"
+import { useCurrency } from "@/contexts/CurrencyContext"
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -25,6 +26,7 @@ const Header = () => {
   const isRTL = locale === "ar"
 
   const { country, setCountry, countries } = useCountry()
+  const { displayCurrency, setDisplayCurrency, currencies, isLoading } = useCurrency()
 
   const navItems = [
     { label: t("navigation.search"), href: "/search" },
@@ -64,6 +66,13 @@ const Header = () => {
     }
   }
 
+  const handleCurrencyChange = (currencyCode: string) => {
+    const selectedCurrency = currencies.find((c) => c.code === currencyCode)
+    if (selectedCurrency) {
+      setDisplayCurrency(selectedCurrency)
+    }
+  }
+
   return (
     <>
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -71,7 +80,9 @@ const Header = () => {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
-              <div className="text-2xl font-bold text-foreground">Aqaryo</div>
+              <div className={`text-2xl font-bold text-foreground ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}>
+                Aqaryo
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -80,7 +91,7 @@ const Header = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-colors ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}
                 >
                   {item.label}
                 </Link>
@@ -92,7 +103,7 @@ const Header = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-colors ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}
                   >
                     {t("navigation.explore")}
                     <ChevronDown className="h-3 w-3 ml-1" />
@@ -101,7 +112,7 @@ const Header = () => {
                 <DropdownMenuContent align={isRTL ? "start" : "end"}>
                   {exploreItems.map((item) => (
                     <DropdownMenuItem key={item.href} asChild>
-                      <Link href={item.href} className="w-full">
+                      <Link href={item.href} className={`w-full ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}>
                         {item.label}
                       </Link>
                     </DropdownMenuItem>
@@ -111,7 +122,7 @@ const Header = () => {
             </nav>
 
             {/* Right side actions */}
-            <div className={`flex items-center ${isRTL ? "space-x-reverse space-x-4" : "space-x-4"}`}>
+            <div className={`flex items-center ${isRTL ? "space-x-reverse space-x-3" : "space-x-3"}`}>
               {/* Country switcher */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -133,6 +144,28 @@ const Header = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
+
+              {/* Currency switcher */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="hidden sm:flex items-center space-x-1">
+                    <DollarSign className="h-4 w-4" />
+                    <span className="text-sm">{displayCurrency.flag}</span>
+                    <span className="text-xs">{displayCurrency.code}</span>
+                    <ChevronDown className="h-3 w-3" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align={isRTL ? "start" : "end"}>
+                  {currencies.map((currency) => (
+                    <DropdownMenuItem key={currency.code} onClick={() => handleCurrencyChange(currency.code)}>
+                      <span className="mr-2">{currency.flag}</span>
+                      {currency.name}
+                      <span className="ml-auto text-xs text-muted-foreground">{currency.symbol}</span>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
               {/* Language toggle */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -144,22 +177,22 @@ const Header = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align={isRTL ? "start" : "end"}>
                   <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
-                    {t("navigation.english")}
+                    <span className="font-english-heading">{t("navigation.english")}</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleLanguageChange("ar")}>
-                    {t("navigation.arabic")}
+                    <span className="font-arabic-heading">{t("navigation.arabic")}</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
 
               {/* Auth buttons - desktop */}
               <div className={`hidden md:flex items-center ${isRTL ? "space-x-reverse space-x-2" : "space-x-2"}`}>
-                <Button variant="ghost" size="sm" onClick={() => openAuthModal("login")}>
+                <Button variant="ghost" size="sm" onClick={() => openAuthModal("login")} className={isRTL ? 'font-arabic-heading' : 'font-english-heading'}>
                   {t("navigation.login")}
                 </Button>
                 <Button
                   size="sm"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90"
+                  className={`bg-primary text-primary-foreground hover:bg-primary/90 ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}
                   onClick={() => openAuthModal("signup")}
                 >
                   {t("navigation.signUp")}
@@ -180,7 +213,7 @@ const Header = () => {
                   <div className="flex flex-col h-full">
                     {/* Top section - Settings */}
                     <div className="flex items-center justify-between py-4 border-b">
-                      <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-2">
                         {/* Country switcher - compact */}
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -199,6 +232,25 @@ const Header = () => {
                           </DropdownMenuContent>
                         </DropdownMenu>
 
+                        {/* Currency switcher - compact */}
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="sm" className="h-8 px-2">
+                              <DollarSign className="h-3 w-3 mr-1" />
+                              <span className="text-sm">{displayCurrency.code}</span>
+                              <ChevronDown className="h-3 w-3 ml-1" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent>
+                            {currencies.map((currency) => (
+                              <DropdownMenuItem key={currency.code} onClick={() => handleCurrencyChange(currency.code)}>
+                                <span className="mr-2">{currency.flag}</span>
+                                {currency.name}
+                              </DropdownMenuItem>
+                            ))}
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+
                         {/* Language toggle - compact */}
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -210,10 +262,10 @@ const Header = () => {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent>
                             <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
-                              {t("navigation.english")}
+                              <span className="font-english-heading">{t("navigation.english")}</span>
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => handleLanguageChange("ar")}>
-                              {t("navigation.arabic")}
+                              <span className="font-arabic-heading">{t("navigation.arabic")}</span>
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -227,7 +279,7 @@ const Header = () => {
                           <Link
                             key={item.href}
                             href={item.href}
-                            className="block px-3 py-3 text-base font-medium text-foreground hover:bg-muted rounded-md transition-colors"
+                            className={`block px-3 py-3 text-base font-medium text-foreground hover:bg-muted rounded-md transition-colors ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}
                             onClick={() => setIsOpen(false)}
                           >
                             {item.label}
@@ -237,7 +289,7 @@ const Header = () => {
 
                       {/* Explore section */}
                       <div className="mt-6 pt-4 border-t">
-                        <div className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                        <div className={`px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}>
                           {t("navigation.explore")}
                         </div>
                         <div className="space-y-1">
@@ -245,7 +297,7 @@ const Header = () => {
                             <Link
                               key={item.href}
                               href={item.href}
-                              className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
+                              className={`block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}
                               onClick={() => setIsOpen(false)}
                             >
                               {item.label}
@@ -260,13 +312,13 @@ const Header = () => {
                       <div className="space-y-2">
                         <Button
                           variant="outline"
-                          className="w-full bg-transparent"
+                          className={`w-full bg-transparent ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}
                           onClick={() => openAuthModal("login")}
                         >
                           {t("navigation.login")}
                         </Button>
                         <Button
-                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                          className={`w-full bg-primary text-primary-foreground hover:bg-primary/90 ${isRTL ? 'font-arabic-heading' : 'font-english-heading'}`}
                           onClick={() => openAuthModal("signup")}
                         >
                           {t("navigation.signUp")}
