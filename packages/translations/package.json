@@ -18,7 +18,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp src/*.json dist/",
     "dev": "tsc --watch",
     "type-check": "tsc --noEmit"
   },
