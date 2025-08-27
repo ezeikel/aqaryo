@@ -1,10 +1,11 @@
 import { ExpoConfig, ConfigContext } from 'expo/config';
+import pkg from './package.json';
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: 'aqaryo',
+  name: 'Aqaryo',
   slug: 'aqaryo',
-  version: '0.1.0',
+  version: pkg.version,
   orientation: 'portrait',
   icon: './assets/images/icon.png',
   scheme: 'aqaryo',
@@ -40,6 +41,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
   ],
+  extra: {
+    eas: {
+      projectId: "eb120a79-7b1c-4544-bb8f-ad13c8b38aa1",
+    },
+  },
   experiments: {
     typedRoutes: true,
   },

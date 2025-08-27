@@ -36,3 +36,19 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# Mobile builds
+*.apk
+*.ipa
+*.aab
+
+# iOS build artifacts
+ios/build/
+ios/Pods/
+*.xcworkspace
+*.xcuserdata/
+
+# Android build artifacts
+android/build/
+android/app/build/
+android/.gradle/
