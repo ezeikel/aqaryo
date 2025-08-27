@@ -1,3 +1,94 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Specific font family utilities for React Native */
+
+/* Poppins fonts */
+.font-poppins-light {
+  font-family: 'Poppins-Light', system;
+}
+
+.font-poppins-regular {
+  font-family: 'Poppins-Regular', system;
+}
+
+.font-poppins-medium {
+  font-family: 'Poppins-Medium', system;
+}
+
+.font-poppins-semibold {
+  font-family: 'Poppins-SemiBold', system;
+}
+
+.font-poppins-bold {
+  font-family: 'Poppins-Bold', system;
+}
+
+/* Outfit fonts */
+.font-outfit-regular {
+  font-family: 'Outfit-Regular', system;
+}
+
+.font-outfit-medium {
+  font-family: 'Outfit-Medium', system;
+}
+
+.font-outfit-semibold {
+  font-family: 'Outfit-SemiBold', system;
+}
+
+.font-outfit-bold {
+  font-family: 'Outfit-Bold', system;
+}
+
+.font-outfit-extrabold {
+  font-family: 'Outfit-ExtraBold', system;
+}
+
+/* Noto Kufi Arabic fonts */
+.font-noto-kufi-regular {
+  font-family: 'NotoKufiArabic-Regular', system;
+}
+
+.font-noto-kufi-medium {
+  font-family: 'NotoKufiArabic-Medium', system;
+}
+
+.font-noto-kufi-semibold {
+  font-family: 'NotoKufiArabic-SemiBold', system;
+}
+
+.font-noto-kufi-bold {
+  font-family: 'NotoKufiArabic-Bold', system;
+}
+
+/* Cairo fonts */
+.font-cairo-regular {
+  font-family: 'Cairo-Regular', system;
+}
+
+.font-cairo-medium {
+  font-family: 'Cairo-Medium', system;
+}
+
+.font-cairo-semibold {
+  font-family: 'Cairo-SemiBold', system;
+}
+
+.font-cairo-bold {
+  font-family: 'Cairo-Bold', system;
+}
+
+/* Default fallback classes */
+.font-sans {
+  font-family: 'Poppins-Regular', system;
+}
+
+.font-heading {
+  font-family: 'Outfit-Regular', system;
+}
+
+.font-arabic {
+  font-family: 'NotoKufiArabic-Regular', system;
+}

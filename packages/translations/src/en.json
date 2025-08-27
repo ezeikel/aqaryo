@@ -55,7 +55,10 @@
     "viewDetails": "View Details",
     "contactAgent": "Contact Agent",
     "whatsapp": "WhatsApp",
-    "call": "Call"
+    "call": "Call",
+    "home": "Home",
+    "saved": "Saved",
+    "account": "Account"
   },
   "findAgent": {
     "title": "Find your agent to find a home",

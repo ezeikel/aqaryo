@@ -1,0 +1,31 @@
+{
+  "name": "@aqaryo/translations",
+  "version": "1.0.0",
+  "description": "Shared translations for Aqaryo web and mobile apps",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts", 
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.js"
+    },
+    "./en": "./src/en.json",
+    "./ar": "./src/ar.json"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

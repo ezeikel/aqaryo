@@ -118,6 +118,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages({ locale })
 
   const isRTL = locale === "ar"
+  const isArabic = locale === "ar"
   const fontClasses = isRTL ? `${notoKufiArabic.variable} ${cairo.variable}` : `${poppins.variable} ${outfit.variable}`
 
   return (
