@@ -29,19 +29,18 @@ export const Typography = ({
 }: TypographyProps) => {
   // Auto-select font based on locale and variant if no specific font provided
   const resolvedFont = font || getDefaultFont(variant, locale);
-  
   const allowFontScaling = props.allowFontScaling ?? !["4xl", "5xl"].includes(size);
   const maxFontSizeMultiplier = props.maxFontSizeMultiplier ?? 1.3;
 
   return (
     <Text
-      className={getTextClassName({ 
-        weight, 
-        font: resolvedFont, 
-        size, 
-        color, 
+      className={getTextClassName({
+        weight,
+        font: resolvedFont,
+        size,
+        color,
         variant,
-        className 
+        className
       })}
       numberOfLines={numberOfLines}
       allowFontScaling={allowFontScaling}
@@ -58,7 +57,7 @@ function getDefaultFont(variant: TypographyProps["variant"], locale: TypographyP
   if (locale === "ar") {
     return variant === "heading" ? "noto-kufi" : "cairo";
   }
-  
+
   return variant === "heading" ? "outfit" : "poppins";
 }
 

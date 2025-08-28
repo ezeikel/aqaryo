@@ -34,7 +34,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home', // Static fallback
-          tabBarIcon: ({ color, focused }) => <FontAwesomeIcon size={24} icon={focused ? faHouseSolid : faHouse} color={color} />,
+          tabBarIcon: ({ color, focused }) => <FontAwesomeIcon size={20} icon={focused ? faHouseSolid : faHouse} color={color} />,
           tabBarLabel: ({ focused, color }) => (
             <TabBarLabel focused={focused} color={color}>
               {t('common.home')}
@@ -46,7 +46,7 @@ export default function TabLayout() {
         name="search"
         options={{
           title: 'Search',
-          tabBarIcon: ({ color, focused }) => <FontAwesomeIcon size={24} icon={focused ? faMagnifyingGlassSolid : faMagnifyingGlass} color={color} />,
+          tabBarIcon: ({ color, focused }) => <FontAwesomeIcon size={20} icon={focused ? faMagnifyingGlassSolid : faMagnifyingGlass} color={color} />,
           tabBarLabel: ({ focused, color }) => (
             <TabBarLabel focused={focused} color={color}>
               {t('navigation.search')}
@@ -58,7 +58,7 @@ export default function TabLayout() {
         name="saved"
         options={{
           title: 'Saved',
-          tabBarIcon: ({ color, focused }) => <FontAwesomeIcon size={24} icon={focused ? faHeartSolid : faHeart} color={color} />,
+          tabBarIcon: ({ color, focused }) => <FontAwesomeIcon size={20} icon={focused ? faHeartSolid : faHeart} color={color} />,
           tabBarLabel: ({ focused, color }) => (
             <TabBarLabel focused={focused} color={color}>
               {t('common.saved')}
@@ -70,7 +70,7 @@ export default function TabLayout() {
         name="account"
         options={{
           title: 'Account',
-          tabBarIcon: ({ color, focused }) => <FontAwesomeIcon size={24} icon={focused ? faUserSolid : faUser} color={color} />,
+          tabBarIcon: ({ color, focused }) => <FontAwesomeIcon size={20} icon={focused ? faUserSolid : faUser} color={color} />,
           tabBarLabel: ({ focused, color }) => (
             <TabBarLabel focused={focused} color={color}>
               {t('common.account')}
