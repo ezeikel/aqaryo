@@ -19,7 +19,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   android: {
     adaptiveIcon: {
       foregroundImage: './assets/images/adaptive-icon.png',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#1C4548',
     },
     edgeToEdgeEnabled: true,
     package: 'com.chewybytes.aqaryo',
@@ -37,7 +37,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         image: './assets/images/splash-icon.png',
         imageWidth: 200,
         resizeMode: 'contain',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#1C4548',
       },
     ],
   ],
